@@ -3,10 +3,9 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 let converter = require('json-2-csv');
 
-const url = 'https://www.amazee.io/news/page';
+const url = 'https://www.amazee.io/blog/page';
 const pages = [];
-
-for (let i = 1; i <= 16; i++) {
+for (let i = 1; i <= 9; i++) {
   const page_url = `${url}/${i}`;
   pages.push(page_url);
 }
@@ -41,7 +40,7 @@ run().then(() => {
 });
 
 const parseToCSV = async (articlesData) => {
-  const filePath = 'aio/csv/aio-news.csv';
+  const filePath = 'aio-blog.csv';
   try {
     const csv = await converter.json2csv(articlesData);
     fs.writeFileSync(filePath, csv);
