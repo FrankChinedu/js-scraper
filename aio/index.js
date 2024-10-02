@@ -22,6 +22,8 @@ app.post('/events', (req, res) => {
       description: item.description.text,
       date: item.postDate,
       link: item.link,
+      resourceType: item.resourceType.type,
+      companyName: item.companyName,
     });
   });
   // console.log({ articles });
@@ -32,7 +34,7 @@ app.post('/events', (req, res) => {
 app.listen(3212, () => console.log('Example app is listening on port 3000.'));
 
 const parseToCSV = async (articlesData) => {
-  const filePath = 'aio/csv/events.csv';
+  const filePath = 'aio/csv/customer-stories.csv';
   try {
     const csv = await converter.json2csv(articlesData);
     fs.writeFileSync(filePath, csv);
